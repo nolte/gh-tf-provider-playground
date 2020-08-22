@@ -44,7 +44,7 @@ jobs:
         with:
           add: 'docs'
           force: true
-          tag: "v${{GITHUB_REF}}"
+          tag: "v$GITHUB_REF"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #- name: Deploy docs
