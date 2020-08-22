@@ -26,6 +26,8 @@ jobs:
       - run: "echo latest release: fff"
       - run: |
           echo ${{ steps.get_latest_release.outputs }}
+          echo ${{ toJson(steps.get_latest_release.outputs) }}
+          echo ${{ steps.get_latest_release.outputs[0].name }}
       - run: |
           env
       - name: Checkout
