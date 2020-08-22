@@ -6,12 +6,12 @@
     "service": "vscode",
     "runServices": [
         "vscode",
-        "mkdocs"
+        //"mkdocs"
     ],
     "mounts": [
-        "source=terraform-harbor-vol,target=/home/vscode/.vscode-server/extensions,type=volume",
+        "source=gh-tf-provider-playground-vol,target=/home/vscode/.vscode-server/extensions,type=volume",
         // And/or for VS Code Insiders
-        "source=terraform-harbor-vol-insiders,target=/home/vscode/.vscode-server-insiders/extensions,type=volume",
+        "source=gh-tf-provider-playground-vol-insiders,target=/home/vscode/.vscode-server-insiders/extensions,type=volume",
     ],
     "shutdownAction": "stopCompose",
     "postCreateCommand": "chmod -R 700 .git",

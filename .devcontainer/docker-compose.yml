@@ -20,9 +20,9 @@ services:
       - ~/.ssh:/root/.ssh:ro
       - /var/run/docker.sock:/var/run/docker.sock
       ## reuse volumes for extensions
-      - terraform-harbor-vol:/home/vscode/.vscode-server/extensions
+      - gh-tf-provider-playground-vol:/home/vscode/.vscode-server/extensions
       # And/or for VS Code Insiders
-      - terraform-harbor-vol-insiders:/home/vscode/.vscode-server-insiders/extensions
+      - gh-tf-provider-playground-vol-insiders:/home/vscode/.vscode-server-insiders/extensions
     environment:
       - TZ=Europe/Berlin # $(cat /etc/timezone)
     cap_add:
@@ -33,5 +33,5 @@ services:
     network_mode: "host"
 
 volumes:
-  terraform-harbor-vol:
-  terraform-harbor-vol-insiders:
+  gh-tf-provider-playground-vol:
+  gh-tf-provider-playground-vol-insiders:
