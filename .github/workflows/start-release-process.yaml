@@ -26,6 +26,6 @@ jobs:
       - run: "echo latest release: ${{ steps.get_latest_release.outputs.data }}"
 
       - name: Checkout
-        uses: actions/c heckout@v2
+        uses: actions/checkout@v2
         with:
           fetch-depth:  0
