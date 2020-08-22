@@ -23,8 +23,11 @@ jobs:
           repository: ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: "echo latest release: ${{ fromJson(steps.get_latest_release.outputs)[0].name }}"
-
+      - run: "echo latest release: fff"
+      - run: |
+          echo "::set-env name=INGRESS_DOMAIN::${{ fromJson(steps.get_latest_release.outputs)[0].name }}"
+      - run: |
+          env
       - name: Checkout
         uses: actions/checkout@v2
         with:
