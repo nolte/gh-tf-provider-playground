@@ -13,6 +13,19 @@ jobs:
   release-process:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo "Starting"
-        echo "Tags: ${{ toJson(github) }}"
+      - run: |
+          echo "Starting"
+          echo "Tags: ${{ toJson(github) }}"
+      - uses: octokit/request-action@v2.x
+        id: get_latest_release
+        with:
+          route: GET /repos/:repository/releases/latest
+          repository: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: "echo latest release: ${{ steps.get_latest_release.outputs.data }}"
+
+      - name: Checkout
+        uses: actions/c heckout@v2
+        with:
+          fetch-depth:  0
