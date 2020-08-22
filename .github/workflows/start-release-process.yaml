@@ -20,10 +20,10 @@ jobs:
         id: get_latest_release
         with:
           route: GET /repos/:repository/releases
-          repository: ${{ github.repository }}
+          #repository: ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: "echo latest release: ${{ steps.get_latest_release.outputs.data[0].name }}"
+      - run: "echo latest release: ${{ steps.get_latest_release.outputs.data[0] }}"
 
       - name: Checkout
         uses: actions/checkout@v2
