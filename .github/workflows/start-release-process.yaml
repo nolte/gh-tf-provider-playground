@@ -26,6 +26,7 @@ jobs:
       - run: "echo latest release: fff"
       - run: |
           echo "::set-env name=DRAFTE_RELESE_VERSION::${{ fromJson(steps.get_latest_release.outputs.data)[0].name }}"
+          echo "::set-env name=DRAFTE_RELESE_ID::${{ fromJson(steps.get_latest_release.outputs.data)[0].id }}"
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -58,7 +59,22 @@ jobs:
         with:
           add: 'docs'
           force: true
-          tag: "${{ env.DRAFTE_RELESE_VERSION }}"
+          #tag: "${{ env.DRAFTE_RELESE_VERSION }}"
           ref: "release/${{ env.DRAFTE_RELESE_VERSION }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: octokit/request-action@v2.0.12
+        id: publish_latest_release
+        with:
+          route: PATCH /repos/:repository/releases/:release_id
+          repository: ${{ github.repository }}
+          release_id: ${{ env.DRAFTE_RELESE_ID }}
+          tag_name: ${{ env.DRAFTE_RELESE_VERSION }}
+          target_commitish: "release/${{ env.DRAFTE_RELESE_VERSION }}"
+          draft: false
+          mediaType: | # The | is significant!
+            previews:
+              - antiope
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
