@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo "::add-path::${{ HOME }}/.local/bin"
+          echo "::add-path::${{ env.HOME }}/.local/bin"
           python -m pip install --upgrade pip
           pip install MarkdownPP mkdocs
       - name: Install dependencies
