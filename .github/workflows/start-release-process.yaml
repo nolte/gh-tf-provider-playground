@@ -33,7 +33,7 @@ jobs:
         with:
           fetch-depth:  0
       - run: |
-          checkout -b release/${{ fromJson(steps.get_latest_release.outputs.data)[0].name }}
+          git checkout -b release/${{ fromJson(steps.get_latest_release.outputs.data)[0].name }}
       - uses: EndBug/add-and-commit@v4 # You can change this to use a specific version
         with:
           add: 'docs'
