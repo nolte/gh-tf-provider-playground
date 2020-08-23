@@ -34,6 +34,15 @@ jobs:
           fetch-depth:  0
       - run: |
           git checkout -b release/${{ fromJson(steps.get_latest_release.outputs.data)[0].name }}
+
+      - name: Install dependencies
+        run: |
+           python -m pip install --upgrade pip
+           pip install MarkdownPP mkdocs
+      - name: Install dependencies
+        run: |
+          cd ./documentation && go run mage.go -v GenerateDocumation
+
       - uses: EndBug/add-and-commit@v4 # You can change this to use a specific version
         with:
           add: 'docs'
