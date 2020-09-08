@@ -16,7 +16,7 @@ jobs:
       - run: |
           echo "Starting"
           echo "Tags: ${{ toJson(github) }}"
-      - uses: octokit/request-action@v2.0.12
+      - uses: octokit/request-action@v2.0.14
         id: get_latest_release
         with:
           route: GET /repos/:repository/releases
@@ -64,7 +64,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: octokit/request-action@v2.0.12
+      - uses: octokit/request-action@v2.0.14
         id: publish_latest_release
         with:
           route: PATCH /repos/:repository/releases/:release_id
